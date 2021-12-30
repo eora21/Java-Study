@@ -44,7 +44,7 @@
 - Annotation
   - 소스코드에 메타 데이터를 삽입하는 형태
   - 코드에 대한 정보 추가 -> 소스 코드의 구조 변경, 환경 설정 정보 추가 등의 작업 진행
-  - @Deprecated, @Override, SuppressWarnings 등
+  - @Deprecated, @Override, @SuppressWarnings 등
   - IDE가 해당 Annotation에 대해 언급해 줌
 
 
@@ -197,6 +197,7 @@
     - `int[][] arr`
     - `int [] arr []`
     - `int arr [][]`
+  - 가독성이 좋게끔 선언할 것
   - new 뒤에 해당 공간을 지정해주거나, 혹은 중괄호로 value를 지정해줄 수 있다.
 
 
@@ -239,3 +240,81 @@
   - 추상 클래스
   - 구현의 강제를 통해 프로그램의 안정성 향상
   - C#에서도 있었지만, 잘 활용은 하지 않았었다.. 이번에 제대로 사용해볼 것!
+
+
+
+- generic type wild card
+  - <? extends T>
+    - T 또는 T를 상속받은 타입들만 사용 가능
+  - <? super T>
+    - T 또는 T의 조상 타입만 사용 가능
+
+
+
+- exception handling
+  - getMessage
+    - 발생된 예외에 대한 구체적인 메세지를 반환
+  - getCause
+    - 예외의 원인이 되는 Throwable 객체 또는 null 반환
+  - printStackTrace
+    - 예외가 발생된 메서드가 호출되기까지의 메서드 호출 스택 출력, 디버깅의 수단으로 주로 사용
+
+
+
+- try-with-resources
+  - try 소괄호에 객체를 선언함으로서 try문이 끝났을 때 자동 close 호출
+  - C#의 using과 작동 자체는 같다.
+  - 단, 해당 객체들은 AutoCloseable interface가 구현되어있어야만 한다.
+
+
+
+- list remove
+  - remove 인자가 int라면 해당 index 삭제로 이루어진다
+  - 값으로 삭제하려면 remove(Integer.valueOf(1)) 등으로 구현할 것
+
+
+
+- 동일한 데이터의 기준
+  - equals()가 true를 리턴, hashCode() 값이 같을 것
+  - set에 어떠한 class를 new해서 넣어 판단할 경우, 해당 클래스의 equals()와 hashCode() 재정의 필요
+    - IDE에서 지원해주는 경우가 있음. 그러나 코드를 잘 이해하고 확인해야 함
+
+
+
+- 정렬
+
+  - Comparable을 상속받아야 정렬 가능하다. 상속받으며 정렬 기준을 잡아주어야 한다.
+
+  - 클래스에서 기준을 잡거나, anonymous inner class, 또는 람다로 가능하다.
+  
+  - ```java
+    public class ClassName implements Comparable<ClassName>{
+        String some; // 사전에 비교 가능한 기준이 있다면 재사용하기
+        ...
+        @Override
+        public int compareTo(ClassName o){
+            //양수: 자리 바꿈, 음수: 자리 유지, 0: 동일 위치
+            return this.some.compareTo(o.some);
+        }
+    }
+    ```
+  
+  - ```java
+    Collections.sort(names, new Comparator<String>(){
+    	@Override
+        public int compare(string o1, string o2){
+            return Integer.compare(o1.length(), o2.length());
+        }
+    });
+    ```
+  
+  - ```java
+    Collections.sort(names, (o1, o2)->{
+        return Integer.compare(o1.length(), o2.length());
+    });
+    ```
+  
+    
+
+
+
