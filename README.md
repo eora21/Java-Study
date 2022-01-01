@@ -314,7 +314,50 @@
     });
     ```
   
-    
 
 
 
+- stream, xxer
+  - 데이터가 byte라면 stream, char라면 xxer
+
+
+
+- flush
+
+  - 버퍼가 있는 스트림에서 버퍼의 내용을 출력, 버퍼를 비움
+
+
+
+
+- 해당 클래스와 동일한 경로의 파일 경로 얻어오기
+
+  - ```java
+    URL url = UseFileStream.class.getResource("readme.txt");
+    ```
+
+  - File f = new File(".") 코드는 현재 자바 프로그램이 돌아가는 경로를 뱉기 때문에, 정확하게는 위 코드와 같은 방법으로 경로를 잡아주는 것이 좋다.
+
+
+
+- 파일 내용을 빠르게 읽어 원본 데이터 형태로 출력
+  - `new DataInputStream(new BufferedInputStream(new FileInputStream()));`
+  - 파일에서 값을 가져오려고 함 -> 버퍼를 이용하여 빠르게 -> 데이터 원본형식으로 객체전송
+
+
+
+- 직렬화
+  - Serializable 인터페이스 상속
+  - transient - 직렬화 제외
+  - 직렬화할 때의 UID(버전)와 역 직렬화 할 때의 UID가 다를 경우 예외 발생
+  - UID 미설정 시 컴파일러가 자동 생성
+  - 직렬화되는 객체에 대해 serialVersionUID 설정 권장
+
+
+
+- parser
+  - SAX parser
+    - Simple APO for XML parser
+    - 이벤트 기반으로 빠르고 한번에 처리, 다양한 탐색이 어려움
+  - DOM parser
+    - Document Object Model
+    - 문서를 메모리에 올려놓음, 다양한 탐색이 가능하나 느리고 무거우며 큰 문서 처리가 힘듦
