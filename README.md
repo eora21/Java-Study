@@ -152,212 +152,334 @@
 
 ## 기타 문법 및 사용법
 
-- 인코딩 확인
-  - workspace를 UTF-8로 변경하여 환경 구축
+### 인코딩 확인
 
+- workspace를 UTF-8로 변경하여 환경 구축
 
+### 간단한 형변환
 
-- 간단한 형변환
-  - float f = 10f / 3F
-  - 숫자의 형을 float으로 바꾸려면 f 또는 F로 할 수 있다. double 등도 마찬가지
-
-
+- float f = 10f / 3F
+- 숫자의 형을 float으로 바꾸려면 f 또는 F로 할 수 있다. double 등도 마찬가지
 
 - 실수를 이용한 계산 값을 정확히 나타내고 싶을 때
   - BigDecimal을 사용
 
+### 라벨
 
+- outer: for (int i = 0; i < 100; i++)
+  - 반복문 자체를 outer라는 라벨로 선언
+- break outer;
+  - outer 자체를 중지
+- continue outer;
+  - outer 자체를 반복
+- 다중 반복문에서 flag를 쓰지 않아도 된다!
 
-- 라벨
-  - outer: for (int i = 0; i < 100; i++)
-    - 반복문 자체를 outer라는 라벨로 선언
-  - break outer;
-    - outer 자체를 중지
-  - continue outer;
-    - outer 자체를 반복
-  - 다중 반복문에서 flag를 쓰지 않아도 된다!
+### 사용자에게 Input을 받으려면
 
+- Scanner sc = new Scanner(System.in);
+- sc.close();
+  - using처럼 자원 반납까지 간편하게 하고 싶다면 try와 함께 사용
 
+### String에서 char를 가져올 때
 
-- 사용자에게 Input을 받으려면
-  - Scanner sc = new Scanner(System.in);
-  - sc.close();
-    - using처럼 자원 반납까지 간편하게 하고 싶다면 try와 함께 사용
+- 배열처럼 idx로 접근할 수 없음!
+- charAt(idx)로 가져올 것
 
+### 다차원 배열 선언
 
+- 대괄호의 자리는 크게 상관이 없다
+  - `int[][] arr`
+  - `int [] arr []`
+  - `int arr [][]`
+- 가독성이 좋게끔 선언할 것
+- new 뒤에 해당 공간을 지정해주거나, 혹은 중괄호로 value를 지정해줄 수 있다.
 
-- String에서 char를 가져올 때
-  - 배열처럼 idx로 접근할 수 없음!
-  - charAt(idx)로 가져올 것
+### 배열에 도움이 될 유틸은 java.util.Arrays에 있다.
 
+- 다차원 배열을 toString할 경우, .deepToString을 사용해야 한다.
 
+### 여러 인자 한번에 넘기기
 
-- 다차원 배열 선언
-  - 대괄호의 자리는 크게 상관이 없다
-    - `int[][] arr`
-    - `int [] arr []`
-    - `int arr [][]`
-  - 가독성이 좋게끔 선언할 것
-  - new 뒤에 해당 공간을 지정해주거나, 혹은 중괄호로 value를 지정해줄 수 있다.
+- ```java
+  public static void func(int... params) {
+  ```
 
+### 이미 알고있는 패키지 임포트
 
+- 코드 먼저 치고 ctrl + shift + o
 
-- 배열에 도움이 될 유틸은 java.util.Arrays에 있다.
-  - 다차원 배열을 toString할 경우, .deepToString을 사용해야 한다.
+### super
 
+- C#의 base, 부모에 접근
 
+### get, set
 
-- 여러 인자 한번에 넘기기
+- C#처럼 간결하게는 불가하지만, IDE에서 간단하게 제공해준다!
+  - 인텔리제이라면 Alt + Insert누른 후 getter setter 항목 선택
+- 직접 작성하려면 메소드로 작성!
 
+### isinstanceof
+
+- C#의 is, 해당하는 객체가 본연의 객체를 지닌 녀석인지 확인
+
+### abstract
+
+- 추상 클래스
+- 구현의 강제를 통해 프로그램의 안정성 향상
+- C#에서도 있었지만, 잘 활용은 하지 않았었다.. 이번에 제대로 사용해볼 것!
+
+### generic type wild card
+
+- <? extends T>
+  - T 또는 T를 상속받은 타입들만 사용 가능
+- <? super T>
+  - T 또는 T의 조상 타입만 사용 가능
+
+### exception handling
+
+- getMessage
+  - 발생된 예외에 대한 구체적인 메세지를 반환
+- getCause
+  - 예외의 원인이 되는 Throwable 객체 또는 null 반환
+- printStackTrace
+  - 예외가 발생된 메서드가 호출되기까지의 메서드 호출 스택 출력, 디버깅의 수단으로 주로 사용
+
+### try-with-resources
+
+- try 소괄호에 객체를 선언함으로서 try문이 끝났을 때 자동 close 호출
+- C#의 using과 작동 자체는 같다.
+- 단, 해당 객체들은 AutoCloseable interface가 구현되어있어야만 한다.
+
+### list remove
+
+- remove 인자가 int라면 해당 index 삭제로 이루어진다
+- 값으로 삭제하려면 remove(Integer.valueOf(1)) 등으로 구현할 것
+
+### 동일한 데이터의 기준
+
+- equals()가 true를 리턴, hashCode() 값이 같을 것
+- set에 어떠한 class를 new해서 넣어 판단할 경우, 해당 클래스의 equals()와 hashCode() 재정의 필요
+  - IDE에서 지원해주는 경우가 있음. 그러나 코드를 잘 이해하고 확인해야 함
+
+### 정렬
+
+- Comparable을 상속받아야 정렬 가능하다. 상속받으며 정렬 기준을 잡아주어야 한다.
+- 클래스에서 기준을 잡거나, anonymous inner class, 또는 람다로 가능하다.  
+- ```java
+  public class ClassName implements Comparable<ClassName>{
+      String some; // 사전에 비교 가능한 기준이 있다면 재사용하기
+      ...
+      @Override
+      public int compareTo(ClassName o){
+          //양수: 자리 바꿈, 음수: 자리 유지, 0: 동일 위치
+          return this.some.compareTo(o.some);
+      }
+  }
+  ```
+- ```java
+  Collections.sort(names, new Comparator<String>(){
+  	@Override
+      public int compare(string o1, string o2){
+          return Integer.compare(o1.length(), o2.length());
+      }
+  });
+  ```
+- ```java
+  Collections.sort(names, (o1, o2)->{
+      return Integer.compare(o1.length(), o2.length());
+  });
+  ```
+
+### stream, xxer
+
+- 데이터가 byte라면 stream, char라면 xxer
+
+### flush
+
+- 버퍼가 있는 스트림에서 버퍼의 내용을 출력, 버퍼를 비움
+
+### 해당 클래스와 동일한 경로의 파일 경로 얻어오기
+
+- ```java
+  URL url = UseFileStream.class.getResource("readme.txt");
+  ```
+- File f = new File(".") 코드는 현재 자바 프로그램이 돌아가는 경로를 뱉기 때문에, 정확하게는 위 코드와 같은 방법으로 경로를 잡아주는 것이 좋다.
+
+### 파일 내용을 빠르게 읽어 원본 데이터 형태로 출력
+
+- `new DataInputStream(new BufferedInputStream(new FileInputStream()));`
+- 파일에서 값을 가져오려고 함 -> 버퍼를 이용하여 빠르게 -> 데이터 원본형식으로 객체전송
+
+### 직렬화
+
+- Serializable 인터페이스 상속
+- transient - 직렬화 제외
+- 직렬화할 때의 UID(버전)와 역 직렬화 할 때의 UID가 다를 경우 예외 발생
+- UID 미설정 시 컴파일러가 자동 생성
+- 직렬화되는 객체에 대해 serialVersionUID 설정 권장
+
+### parser
+
+- SAX parser
+  - Simple APO for XML parser    
+  - 이벤트 기반으로 빠르고 한번에 처리, 다양한 탐색이 어려움    
   - ```java
-    public static void func(int... params) {
-    ```
-
-
-
-- 이미 알고있는 패키지 임포트
-  - 코드 먼저 치고 ctrl + shift + o
-
-
-
-- super
-  - C#의 base, 부모에 접근
-
-
-
-- get, set
-  - C#처럼 간결하게는 불가하지만, IDE에서 간단하게 제공해준다!
-  - 직접 작성하려면 메소드로 작성!
-
-
-
-- isinstanceof
-  - C#의 is, 해당하는 객체가 본연의 객체를 지닌 녀석인지 확인
-
-
-
-- abstract
-  - 추상 클래스
-  - 구현의 강제를 통해 프로그램의 안정성 향상
-  - C#에서도 있었지만, 잘 활용은 하지 않았었다.. 이번에 제대로 사용해볼 것!
-
-
-
-- generic type wild card
-  - <? extends T>
-    - T 또는 T를 상속받은 타입들만 사용 가능
-  - <? super T>
-    - T 또는 T의 조상 타입만 사용 가능
-
-
-
-- exception handling
-  - getMessage
-    - 발생된 예외에 대한 구체적인 메세지를 반환
-  - getCause
-    - 예외의 원인이 되는 Throwable 객체 또는 null 반환
-  - printStackTrace
-    - 예외가 발생된 메서드가 호출되기까지의 메서드 호출 스택 출력, 디버깅의 수단으로 주로 사용
-
-
-
-- try-with-resources
-  - try 소괄호에 객체를 선언함으로서 try문이 끝났을 때 자동 close 호출
-  - C#의 using과 작동 자체는 같다.
-  - 단, 해당 객체들은 AutoCloseable interface가 구현되어있어야만 한다.
-
-
-
-- list remove
-  - remove 인자가 int라면 해당 index 삭제로 이루어진다
-  - 값으로 삭제하려면 remove(Integer.valueOf(1)) 등으로 구현할 것
-
-
-
-- 동일한 데이터의 기준
-  - equals()가 true를 리턴, hashCode() 값이 같을 것
-  - set에 어떠한 class를 new해서 넣어 판단할 경우, 해당 클래스의 equals()와 hashCode() 재정의 필요
-    - IDE에서 지원해주는 경우가 있음. 그러나 코드를 잘 이해하고 확인해야 함
-
-
-
-- 정렬
-
-  - Comparable을 상속받아야 정렬 가능하다. 상속받으며 정렬 기준을 잡아주어야 한다.
-
-  - 클래스에서 기준을 잡거나, anonymous inner class, 또는 람다로 가능하다.
-  
-  - ```java
-    public class ClassName implements Comparable<ClassName>{
-        String some; // 사전에 비교 가능한 기준이 있다면 재사용하기
-        ...
-        @Override
-        public int compareTo(ClassName o){
-            //양수: 자리 바꿈, 음수: 자리 유지, 0: 동일 위치
-            return this.some.compareTo(o.some);
-        }
+    try{
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser parser = factory.newSAXParser();
+        parser.parse(xml, this);  // defaulthandler를 상속받은 형태라면 this로
     }
     ```
-  
-  - ```java
-    Collections.sort(names, new Comparator<String>(){
-    	@Override
-        public int compare(string o1, string o2){
-            return Integer.compare(o1.length(), o2.length());
-        }
-    });
-    ```
-  
-  - ```java
-    Collections.sort(names, (o1, o2)->{
-        return Integer.compare(o1.length(), o2.length());
-    });
-    ```
-  
+- DOM parser
+  - Document Object Model
+  - 문서를 메모리에 올려놓음, 다양한 탐색이 가능하나 느리고 무거우며 큰 문서 처리가 힘듦
 
+### Wrapper class
 
+- 기본 자료타입을 객체로 다루기 위해 사용하는 클래스
+- 기본 자료타입은 주어진 값을 변수에 저장하여 스택 영역에 생성된다
+- 그러나 객체는 메모리 주소를 값으로 가지고 힙 영역에 생성된다
+- 만약 기본 자료타입을 객체로 넘겨야 할 경우에는 Wrapper 클래스를 이용하여 넘긴다
 
-- stream, xxer
-  - 데이터가 byte라면 stream, char라면 xxer
+### stream
 
+* 기존의 for, foreach로 하나씩 접근하는 방법과는 달리 람다 함수 형식으로 간결하게 처리 가능
 
+### optional
 
-- flush
+- null이 들어올 수 있는 객체반환 시 해당 오류를 내보내지 않게 하기 위함.. 이라고 되어 있지만..
+- 바르게 쓰는 방법은 [여기 참고](https://homoefficio.github.io/2019/10/03/Java-Optional-%EB%B0%94%EB%A5%B4%EA%B2%8C-%EC%93%B0%EA%B8%B0/)
 
-  - 버퍼가 있는 스트림에서 버퍼의 내용을 출력, 버퍼를 비움
+### Assert
 
+- `import org.junit.jupiter.api.Assertions;`의 `Assertions.assertEquals(member, result);`
+  - 기댓값이 결과값과 같은지 확인
+- `import org.assertj.core.api.Assertions;`의 `Assertions.assertThat(member).isEqualTo(result);`
+  - 위와 같긴 하나 의미파악면에서 좀 더 간결
 
+### import static
 
+- 코드 구성 중 호출부분 없앨 수 있음
+- using namespace 세팅이랑 비슷한가..?
 
-- 해당 클래스와 동일한 경로의 파일 경로 얻어오기
+---
 
-  - ```java
-    URL url = UseFileStream.class.getResource("readme.txt");
-    ```
+# BackEnd
 
-  - File f = new File(".") 코드는 현재 자바 프로그램이 돌아가는 경로를 뱉기 때문에, 정확하게는 위 코드와 같은 방법으로 경로를 잡아주는 것이 좋다.
+## Web Architecture
 
+- Web Server 켜기
+- Browser(data 발생)
+- request with data
+- webserver -> applicationserver로 request 전달
+  - WAS: Web, Application Server
+  - Tomcat
+- Application Server
+  - presentation(html, xml, Json 등 ML), 일처리 한 후의 결과
+  - Business Logic
+    - 페이지 처리, 연산 처리 등 DB에 있는 외의 데이터 처리
+  - Persitence Logic
+    - DB 데이터 처리(JDBC 사용)
+- RDBMS
+  - DB 데이터를 담고 있는 서버
 
+### Tomcat
 
-- 파일 내용을 빠르게 읽어 원본 데이터 형태로 출력
-  - `new DataInputStream(new BufferedInputStream(new FileInputStream()));`
-  - 파일에서 값을 가져오려고 함 -> 버퍼를 이용하여 빠르게 -> 데이터 원본형식으로 객체전송
+- Dynamic web module version
+  - 3버전 이전은 web.xml 필수
+- Context root
+  - 최종형은 `/`만
+  - 기본 주소 다음에 들어올 경로, 프로젝트의 root
+- src에는 자바만, webcontents에는 html, css, js, jsp, img등 자바를 제외한 모든 것
 
+## Servlet
 
+- destroy
+  - 자율반납, 메모리에 올라간 자바를 마지막에 터칠 때
+- init
+  - 초기화작업
+- service
+  - 클라이언트의 요청, 서버의 응답
+  - 필수
 
-- 직렬화
-  - Serializable 인터페이스 상속
-  - transient - 직렬화 제외
-  - 직렬화할 때의 UID(버전)와 역 직렬화 할 때의 UID가 다를 경우 예외 발생
-  - UID 미설정 시 컴파일러가 자동 생성
-  - 직렬화되는 객체에 대해 serialVersionUID 설정 권장
+### GenericServlet
 
+- 필수인 service를 제외하고 나머지를 Override해놓은 것
+- service에서 get인지 post인지 구분해야 할 코드 필수
 
+### HttpServlet
 
-- parser
-  - SAX parser
-    - Simple APO for XML parser
-    - 이벤트 기반으로 빠르고 한번에 처리, 다양한 탐색이 어려움
-  - DOM parser
-    - Document Object Model
-    - 문서를 메모리에 올려놓음, 다양한 탐색이 가능하나 느리고 무거우며 큰 문서 처리가 힘듦
+- Override할 필요 없음, 의미부여만 해놓은 추상 클래스
+- 아무거나 하나만 오버라이드하면 됨
+- doget, dopost 2개가 있음
+- get방식으로 받을 때 행동할 doget, post일 때 행동할 dopost 오버라이드
+
+---
+
+# Spring Framework
+
+## 구조
+
+### Spring 삼각형
+
+> Enterprise Application 개발 시 복잡함을 해결하는 Spring의 핵심
+
+#### POJO(Plain Old Java Object)
+
+- 특정 환경이나 기술에 종속적이지 않은 객체지향 원리에 충실한 자바객체
+- 테스트하기 용이하며, 객체지향 설계를 자유롭게 적용할 수 있다.
+
+#### PSA(Portable Service Abstraction)
+
+- 환경, 세부기술 변경에 관계없이 일관된 방ㅅ긱으로 기술에 접근할 수 있게 해주는 설계 원칙
+- 기술적인 복잡함은 추상화를 통해 Low Level의 기술 구현 부분과 기술을 사용하는 인터페이스로 분리
+- 예) 데이터베이스에 관계없이 동일하게 적용할 수 있는 트랜잭션 처리방식
+
+#### IoC(Inversion of Control)/DI(Dependency Injection)
+
+- 제어의 역전, 메소드나 객체의 호출작업을 개발자가 아닌 외부에서 결정하는 것
+- 유연하게 확장 가능한 객체를 만들어 두고, 객체 간의 의존관계는 외부에서 다이나믹하게 설정
+
+#### AOP(Aspect Oriented Programming)
+
+- 관심사의 분리를 통해서 소프트웨어의 모듈성을 향상
+- 공통 모듈을 여러 코드에 쉽게 적용 가능
+
+## IoC
+
+### Dependency Lookup
+
+- 컨테이너가 lookup context를 통해서 필요한 Resource나 Object를 얻는 방식
+
+### Dependency Injection
+
+> 의존성 주입
+
+- Object에 lookup 코드를 사용하지 않고 컨테이너가 직접 의존 구조를 Object에 설정할 수 있도록 지정해주는 방식
+- Object가 컨테이너의 존재 여부를 알 필요가 없음
+- Lookup 관련된 코드들이 Object에서 사라짐
+- Setter Injection과 Constructor Inject
+
+## Container
+
+### 컨테이너란?
+
+- 객체의 생성, 사용, 소멸에 해당하는 라이프사이클을 담당
+- 라이프사이클을 기본으로 애플리케이션 사용에 필요한 주요 기능을 제공
+
+### 컨테이너 기능
+
+- 라이프사이클 관리
+- Dependency 객체 제공
+- Thread 관리
+- 기타 애플리케이션 실행에 필요한 환경
+
+### 컨테이너 필요성
+
+- 비지니스 로직 외에 부가적인 기능들에 대해서는 독립적으로 관리되도록 하기 위함
+- 서비스 lookup이나 Configuration에 대한 일관성을 갖기 위함
+- 서비스 객체를 사용하기 위해 각각 Factory 또는 Singleton 패턴을 직접 구현하지 않아도 됨
+
+### 스프링 DI 컨테이너
+
+- 
